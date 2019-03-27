@@ -14,7 +14,6 @@ import com.charles.utils.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,7 +86,7 @@ public class EmployeeController {
         for (Department department : departments) {
             //如果用角色和部门对应的两个标识去中间表能够查询到数据，表示该角色属于该部门
             EmpDepart empDepart = iEmpDepartService.selectOne(new EntityWrapper<EmpDepart>().eq("mims_emp_id", id).eq("mims_depart_id", department.getId()));
-            if (empDepart!=null&&empDepart.equals("")){
+            if (empDepart!=null){
                 department.setFlag(1);
             }
         }

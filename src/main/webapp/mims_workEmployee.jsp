@@ -202,14 +202,15 @@
             </div>
         </div>
         <div class="layui-form-item" pane>
-            <label class="layui-form-label">员工性别：</label>
+            <label class="layui-form layui-form-label">员工性别：</label>
             <div class="layui-input-block">
-                <select class="layui-select layui-select-tips" name="sex"  id="addSex">
+                <select  name="sex"  id="addSex"  style="width: 20px">
                     <option class="layui-select-tips" value="男">男</option>
                     <option class="layui-select-tips" value="女">女</option>
                 </select>
             </div>
         </div>
+
         <div class="layui-form-item" pane>
             <label class="layui-form-label">联系电话：</label>
             <div class="layui-input-inline">
@@ -305,8 +306,8 @@
         </div>
         <div class="layui-form-item" pane>
             <label class="layui-form layui-form-label">员工性别:</label>
-            <div class="layui-input-block">
-                <select name="sex"  id="updateSex">
+            <div class="layui-input-inline">
+                <select name="sex"  id="updateSex" style="width: 20px">
                     <option value="男" id="updateSexMan">男</option>
                     <option value="女" id="updateSexWoman">女</option>
                 </select>
@@ -352,6 +353,7 @@
         layui.use('table', function () {
             form = layui.form;
             $.post('${pageContext.request.contextPath}/employee/mims_echo', {'id': id}, function (result) {
+                //员工信息回显
                 var emp = result.employee;
                 $("#updateNumber").val(emp.number);
                 $("#updateName").val(emp.name);
@@ -360,20 +362,18 @@
                 $("#updateQQ").val(emp.qq);
                 $("#updateDescription").val(emp.description);
                 if(emp.sex=='男'){
-                    $("#updateSexMan").selected('selected');
+                    $("#updateSexMan").selected='selected';
                 }else
-                    $("#updateSexWoman").selected('selected');
+                    $("#updateSexWoman").selected='selected';
                 var dep = result.departments;
                 for (var i=0;i<dep.length;i++){
                     if (dep[i].flag==1){
-                        $("#updateDepartments").append("<input type='checkbox' name='ids' value='"+dep[i].id+"' title='"+dep[i].name+"' checked>");
-                        form.render();
-                    }else{
-                        $("#updateDepartments").append("<input type='checkbox' name='ids' value='"+dep[i].id+"' title='"+dep[i].name+"'>");
-                        form.render();
+                        $("#updateDepartments").append("<input type='checkbox' id='dep"+dep[i].id +"' name='ids' value='"+dep[i].id+"' title='"+dep[i].name+"' checked >");
+                    }else {
+                        $("#updateDepartments").append("<input type='checkbox' id='dep"+dep[i].id +"' name='ids' value='"+dep[i].id+"' title='"+dep[i].name+"' >");
                     }
+                    form.render();
                 }
-
             });
             layer.open({
                 area: ['500px', '380px'],
@@ -390,9 +390,11 @@
                         success: function (result) {
                             if (result == true) {
                                 layer.msg('更新成功', {icon: 6}, function () {
+                                    location.reload(true);
                                 })
                             } else {
                                 layer.msg('更新失败', {icon: 5}, function () {
+                                    location.reload(true);
                                 })
                             }
                         }

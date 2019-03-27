@@ -87,14 +87,14 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         //更新员工信息
         Integer updateById = employeeMapper.updateById(employee);
         //更新部门信息
-        Integer delete = empDepartMapper.delete(new EntityWrapper<EmpDepart>().eq("mims_emp_id", employee.getId()));
+        empDepartMapper.delete(new EntityWrapper<EmpDepart>().eq("mims_emp_id", employee.getId()));
         EmpDepart empDepart = new EmpDepart();
         empDepart.setMimsEmpId(employee.getId());
         for (Integer id : ids) {
             empDepart.setMimsDepartId(id);
             empDepartMapper.insert(empDepart);
         }
-        if (updateById>0&&delete>0){
+        if (updateById>0){
             return true;
         }
         return false;
