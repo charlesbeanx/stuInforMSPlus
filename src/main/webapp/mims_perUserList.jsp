@@ -10,17 +10,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>学院办公信息管理系统-用户列表</title>
+    <title>学院办公信息管理系统-用户</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/media/layui/css/layui.css" media="all">
-    <script src="${pageContext.request.contextPath}/media/js/jquery.min.js"/>
+    <script src="${pageContext.request.contextPath}/media/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/media/layui/layui.js"></script>
     <script type="text/javascript">
         //带着每页大小去搜寻
         function searchData() {
             var pageSize = $("#pageSize").val();
             $("#userForm").attr("action", "${pageContext.request.contextPath}/user/mims_perUserList/?pageSize=" + pageSize);
+            $("#userForm").submit();
+        }
+
+        //上一页、下一页、尾页、首页的跳转
+        function goPage(pageIndex) {
+            var pageSize = $("#pageSize").val();
+            $("#userForm").attr("action", "${pageContext.request.contextPath}/user/mims_perUserList?pageSize=" + pageSize + "&pageIndex=" + pageIndex);
             $("#userForm").submit();
         }
 
@@ -33,20 +41,14 @@
         //选择每页显示的大小
         function changePageSize() {
             var pageSize = $("#pageSize").val();
-            $("#mims_form").attr("action", "${pageContext.request.contextPath}/employee/mims_list?pageSize=" + pageSize);
-            $("#mims_form").submit();
+            $("#userForm").attr("action", "${pageContext.request.contextPath}/user/mims_perUserList?pageSize=" + pageSize);
+            $("#userForm").submit();
         }
-        //跳转到特定的某一页的写法
-        function goPageNum() {
-            var pageIndex = $("#pageNum").val();
-            goPage(pageIndex, pageSize);
-        }
-
-
     </script>
 </head>
 <body>
-<form id="userForm" action="${pageContext.request.contextPath}/user/mims_perUserList">
+<form id="userForm" >
+    <%--action="${pageContext.request.contextPath}/user/mims_perUserList"--%>
     <div class="layui-container">
         <div class="layui-row" style="margin-top: 10px">
             <!-- 搜索条件1 --名字 		 -->
@@ -54,8 +56,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">姓名：</label>
                     <div class="layui-input-block">
-                        <input type="text" id="username" name="username" class="layui-input" placeholder="用户姓名"
-                               value="${user.username }">
+                        <input type="text" id="username" name="username" class="layui-input" placeholder="用户姓名" value="${user.username }">
                     </div>
                 </div>
             </div>
@@ -131,48 +132,47 @@
         </c:forEach>
         </tbody>
     </table>
-    <%--第二部分：分页信息--%>
+    <!--第二部分：分页信息-->
     <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1">
-        <%--1 首页--%>
-        <a href="#" onclick="goPage(1)">首页</a>
-        <%--2 上一页--%>
+        <!-- 1首页 -->
+        <a href="#" onclick="goPage(1);">首页</a>
+        <!-- 2上一页 -->
         <c:if test="${pageHelper.pageIndex!=1}">
             <a href="#" onclick="goPage(${pageHelper.pageIndex-1})">&lt;</a>
         </c:if>
-        <%--3 中间页--%>
+        <!-- 3中间页 -->
         <c:forEach begin="${pageHelper.startNum}" end="${pageHelper.endNum}" step="1" var="i">
-            <%--判断是否是当前页，不能就有点击事件--%>
             <c:if test="${pageHelper.pageIndex==i}">
                 <span style="color: #009688; font-weight: bold;">${i}</span>
             </c:if>
             <c:if test="${pageHelper.pageIndex!=i}">
-                <a href="#" onclick="goPage(${i})">${i}</a>
+                <a href="#" onclick="goPage(${i})">${i }</a>
             </c:if>
         </c:forEach>
-        <%--4 下一页--%>
+        <!-- 4下一页 -->
         <c:if test="${pageHelper.pageIndex!=pageHelper.totalPage}">
-            <a href="#" onclick="goPage(${pageHelper.pageIndex+1})">&gt;</a>
+            <a href="#" onclick="goPage(${pageHelper.pageIndex+1});">&gt;</a>
         </c:if>
-        <%--5 末页--%>
-        <a href="#" onclick="goPage(${pageHelper.totalCount})">尾页</a>
-        <%--6 跳转某一页--%>
+        <!-- 5末页 -->
+        <a href="#" onclick="goPage(${pageHelper.totalPage})">尾页</a>
+        <!-- 6跳转特殊一页 -->
         <span class="layui-laypage-skip">到第
-                <input type="text" id="pageNum" size="1" value="${pageHelper.pageIndex }" class="layui-input">页
-                <input type="button" value="确定" class="layui-laypage-btn" onclick="goPageNum(${pageHelper.pageSize});">
-            </span>
-        <%--7 共几页--%>
+            <input type="text" id="pageNum" size="1" value="${pageHelper.pageIndex }" class="layui-input">页
+            <input type="button" value="确定" class="layui-laypage-btn" onclick="goPageNum(${pageHelper.pageSize});">
+        </span>
+        <!-- 7共几条 -->
         <span class="layui-laypage-count">共${pageHelper.totalCount}条</span>
-        <%--8 每页展示数据数量--%>
+        <!-- 8选择页面显示几条 -->
         <span class="layui-laypage-limits">
-            <select lay-ignore="" id="pageSize" onchange="changePageSize();">
-                <option value="3" ${pageHelper.pageSize==3?'selected':''}>3条/页</option>
-                <option value="6" ${pageHelper.pageSize==6?'selected':''}>6条/页</option>
-                <option value="9" ${pageHelper.pageSize==9?'selected':''}>9条/页</option>
-            </select>
+            <select lay-ignore="" id="pageSize" name="pageSize" onchange="changePageSize();">
+					<option value="3" ${pageHelper.pageSize==3?'selected':''}>3条/页</option>
+					<option value="6" ${pageHelper.pageSize==6?'selected':''}>6条/页</option>
+					<option value="9" ${pageHelper.pageSize==9?'selected':''}>9条/页</option>
+			</select>
         </span>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/media/layui/layui.js"></script>
+
 <script type="text/javascript">
     //删除记录
     function deleteUser(userId, m) {
@@ -235,9 +235,7 @@
         });
 
     }
-
     var form;
-
     //异步更新数据
     function userUpdate(userId) {
         layui.use('table', function () {

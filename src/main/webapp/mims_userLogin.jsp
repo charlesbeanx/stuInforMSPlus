@@ -34,7 +34,7 @@
 <div class="layui-canvs"></div>
 <div class="layui-layout layui-layout-login">
     <%--登录页面用户信息写入框--%>
-    <form action="${pageContext.request.contextPath}/user/mims_userLogin" method="post">
+    <form action="${pageContext.request.contextPath}/user/mims_login" method="post">
         <h1>
             <strong>学院办公信息管理系统</strong> <em>Math-Information Office System</em>
         </h1>
