@@ -427,12 +427,3 @@
         </div>
     </form>
 </div>
-<script type="text/javascript">
-    window.onbeforeunload=function (){
-        $.ajax({
-            type: "POST",
-            url: "${pageContext.request.contextPath}/user/mima_userLoginout",
-            async: false
-        });
-    }
-</script>

@@ -43,7 +43,7 @@
         function deleteInfor(id, location) {
             layui.use('table', function () {
                 layer.confirm('确定删除本条记录吗？', {
-                    btn: ['是', '否'],
+                    btn: ['是'],
                     btn1: function () {
                         $.ajax({
                             url: "${pageContext.request.contextPath}/employee/mims_delete",
@@ -60,11 +60,6 @@
                             }
                         });
                     },
-                    btn2: function () {
-                        layer.msg('取消', {icon: 4}, function () {
-                            location.reload(true);
-                        })
-                    }
                 });
             });
         }
@@ -74,7 +69,7 @@
             var sta = locked==0?'禁用':'启用';
             layui.use('table',function () {
                 layer.confirm('确定要'+sta+'吗？',{
-                    btn:['是','否'],
+                    btn:['是'],
                     btn1:function () {
                         $.ajax({
                             url:'${pageContext.request.contextPath}/employee/mims_changeState',
@@ -94,9 +89,6 @@
                             }
                         });
                     },
-                    btn2:function () {
-                        location.reload(true);
-                    }
                 });
             });
         }
@@ -203,7 +195,7 @@
         </div>
         <div class="layui-form-item" pane>
             <label class="layui-form layui-form-label">员工性别：</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
                 <select  name="sex"  id="addSex"  style="width: 20px">
                     <option class="layui-select-tips" value="男">男</option>
                     <option class="layui-select-tips" value="女">女</option>
@@ -402,9 +394,7 @@
                     layer.close(index);
                 },
                 cancel: function () {
-                    layer.msg('已取消', {icon: 4},function () {
-                        location.reload(true);
-                    });
+                   location.reload(true);
                 }
             });
         });
