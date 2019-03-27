@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
  * @since 2019-03-27
  */
 @Controller
-@RequestMapping("/grade")
-public class GradeController {
+@RequestMapping("/major")
+public class MajorController {
 
 }
 

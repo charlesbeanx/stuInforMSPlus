@@ -3,7 +3,7 @@
 <mapper namespace="com.charles.mapper.TeacherMapper">
 
     <!-- 开启二级缓存 -->
-    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.charles.bean.Teacher">
@@ -11,17 +11,15 @@
         <result column="name" property="name" />
         <result column="sex" property="sex" />
         <result column="locked" property="locked" />
-        <result column="birthday" property="birthday" />
         <result column="del" property="del" />
         <result column="education" property="education" />
         <result column="photo" property="photo" />
         <result column="phone" property="phone" />
-        <result column="email" property="email" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, sex, locked, birthday, del, education, photo, phone, email
+        id, name, sex, locked, del, education, photo, phone
     </sql>
 
 </mapper>

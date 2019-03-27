@@ -3,7 +3,7 @@
 <mapper namespace="com.charles.mapper.CourseMapper">
 
     <!-- 开启二级缓存 -->
-    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.charles.bean.Course">
@@ -11,16 +11,13 @@
         <result column="name" property="name" />
         <result column="locked" property="locked" />
         <result column="del" property="del" />
-        <result column="createdate" property="createdate" />
         <result column="description" property="description" />
-        <result column="week" property="week" />
         <result column="count" property="count" />
-        <result column="teacherid" property="teacherid" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, locked, del, createdate, description, week, count, teacherid
+        id, name, locked, del, description, count
     </sql>
 
 </mapper>

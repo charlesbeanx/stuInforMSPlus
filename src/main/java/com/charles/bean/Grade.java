@@ -1,7 +1,6 @@
 package com.charles.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author charlesBean
- * @since 2019-03-06
+ * @since 2019-03-27
  */
 @TableName("mims_grade")
 public class Grade implements Serializable {
@@ -30,12 +29,12 @@ public class Grade implements Serializable {
     private Integer locked;
     private Integer del;
     private String description;
-    private Date createdate;
     /**
      * 统计一个班级的人数
      */
     private Integer count;
     private Integer teacherid;
+    private Integer majorid;
 
 
     public Integer getId() {
@@ -78,14 +77,6 @@ public class Grade implements Serializable {
         this.description = description;
     }
 
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-
     public Integer getCount() {
         return count;
     }
@@ -102,6 +93,14 @@ public class Grade implements Serializable {
         this.teacherid = teacherid;
     }
 
+    public Integer getMajorid() {
+        return majorid;
+    }
+
+    public void setMajorid(Integer majorid) {
+        this.majorid = majorid;
+    }
+
     @Override
     public String toString() {
         return "Grade{" +
@@ -110,9 +109,9 @@ public class Grade implements Serializable {
         ", locked=" + locked +
         ", del=" + del +
         ", description=" + description +
-        ", createdate=" + createdate +
         ", count=" + count +
         ", teacherid=" + teacherid +
+        ", majorid=" + majorid +
         "}";
     }
 }

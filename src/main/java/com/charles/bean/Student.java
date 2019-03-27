@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author charlesBean
- * @since 2019-03-06
+ * @since 2019-03-27
  */
 @TableName("mims_student")
 public class Student implements Serializable {
@@ -25,11 +25,11 @@ public class Student implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    private String stunumber;
+    private String number;
     private String name;
     private String sex;
     private String birthday;
-    private Integer cardnumber;
+    private Integer idcar;
     private String education;
     private Integer gradeid;
     /**
@@ -40,7 +40,6 @@ public class Student implements Serializable {
      * 学生的删状态：0表示未删除；1表示已删除
      */
     private Integer del;
-    private String qq;
     private String phone;
     private String photo;
     /**
@@ -48,6 +47,7 @@ public class Student implements Serializable {
      */
     private String createtime;
     private String email;
+    private String qq;
 
 
     public Integer getId() {
@@ -58,12 +58,12 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public String getStunumber() {
-        return stunumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setStunumber(String stunumber) {
-        this.stunumber = stunumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getName() {
@@ -90,12 +90,12 @@ public class Student implements Serializable {
         this.birthday = birthday;
     }
 
-    public Integer getCardnumber() {
-        return cardnumber;
+    public Integer getIdcar() {
+        return idcar;
     }
 
-    public void setCardnumber(Integer cardnumber) {
-        this.cardnumber = cardnumber;
+    public void setIdcar(Integer idcar) {
+        this.idcar = idcar;
     }
 
     public String getEducation() {
@@ -130,14 +130,6 @@ public class Student implements Serializable {
         this.del = del;
     }
 
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -170,24 +162,32 @@ public class Student implements Serializable {
         this.email = email;
     }
 
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
         ", id=" + id +
-        ", stunumber=" + stunumber +
+        ", number=" + number +
         ", name=" + name +
         ", sex=" + sex +
         ", birthday=" + birthday +
-        ", cardnumber=" + cardnumber +
+        ", idcar=" + idcar +
         ", education=" + education +
         ", gradeid=" + gradeid +
         ", locked=" + locked +
         ", del=" + del +
-        ", qq=" + qq +
         ", phone=" + phone +
         ", photo=" + photo +
         ", createtime=" + createtime +
         ", email=" + email +
+        ", qq=" + qq +
         "}";
     }
 }

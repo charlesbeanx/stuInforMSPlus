@@ -1,7 +1,6 @@
 package com.charles.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author charlesBean
- * @since 2019-03-06
+ * @since 2019-03-27
  */
 @TableName("mims_course")
 public class Course implements Serializable {
@@ -29,14 +28,8 @@ public class Course implements Serializable {
     private String name;
     private Integer locked;
     private Integer del;
-    private Date createdate;
     private String description;
-    private Integer week;
     private Integer count;
-    /**
-     * 该课程授课老师的信息
-     */
-    private Integer teacherid;
 
 
     public Integer getId() {
@@ -71,28 +64,12 @@ public class Course implements Serializable {
         this.del = del;
     }
 
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getWeek() {
-        return week;
-    }
-
-    public void setWeek(Integer week) {
-        this.week = week;
     }
 
     public Integer getCount() {
@@ -103,14 +80,6 @@ public class Course implements Serializable {
         this.count = count;
     }
 
-    public Integer getTeacherid() {
-        return teacherid;
-    }
-
-    public void setTeacherid(Integer teacherid) {
-        this.teacherid = teacherid;
-    }
-
     @Override
     public String toString() {
         return "Course{" +
@@ -118,11 +87,8 @@ public class Course implements Serializable {
         ", name=" + name +
         ", locked=" + locked +
         ", del=" + del +
-        ", createdate=" + createdate +
         ", description=" + description +
-        ", week=" + week +
         ", count=" + count +
-        ", teacherid=" + teacherid +
         "}";
     }
 }

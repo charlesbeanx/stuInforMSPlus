@@ -13,21 +13,17 @@ import java.io.Serializable;
  * </p>
  *
  * @author charlesBean
- * @since 2019-03-06
+ * @since 2019-03-27
  */
 @TableName("mims_score")
 public class Score implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 成绩表的信息
-     */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     private Integer studentid;
     private Integer courseid;
-    private Integer score;
 
 
     public Integer getId() {
@@ -54,21 +50,12 @@ public class Score implements Serializable {
         this.courseid = courseid;
     }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
     @Override
     public String toString() {
         return "Score{" +
         ", id=" + id +
         ", studentid=" + studentid +
         ", courseid=" + courseid +
-        ", score=" + score +
         "}";
     }
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.charles.mapper.GradeMapper">
 
     <!-- 开启二级缓存 -->
-    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.charles.bean.Grade">
@@ -12,14 +12,14 @@
         <result column="locked" property="locked" />
         <result column="del" property="del" />
         <result column="description" property="description" />
-        <result column="createdate" property="createdate" />
         <result column="count" property="count" />
         <result column="teacherid" property="teacherid" />
+        <result column="majorid" property="majorid" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, locked, del, description, createdate, count, teacherid
+        id, name, locked, del, description, count, teacherid, majorid
     </sql>
 
 </mapper>

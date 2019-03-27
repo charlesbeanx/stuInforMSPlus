@@ -1,7 +1,6 @@
 package com.charles.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author charlesBean
- * @since 2019-03-06
+ * @since 2019-03-27
  */
 @TableName("mims_teacher")
 public class Teacher implements Serializable {
@@ -29,12 +28,10 @@ public class Teacher implements Serializable {
     private String name;
     private String sex;
     private Integer locked;
-    private Date birthday;
     private Integer del;
     private String education;
     private String photo;
     private String phone;
-    private String email;
 
 
     public Integer getId() {
@@ -69,14 +66,6 @@ public class Teacher implements Serializable {
         this.locked = locked;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public Integer getDel() {
         return del;
     }
@@ -109,14 +98,6 @@ public class Teacher implements Serializable {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public String toString() {
         return "Teacher{" +
@@ -124,12 +105,10 @@ public class Teacher implements Serializable {
         ", name=" + name +
         ", sex=" + sex +
         ", locked=" + locked +
-        ", birthday=" + birthday +
         ", del=" + del +
         ", education=" + education +
         ", photo=" + photo +
         ", phone=" + phone +
-        ", email=" + email +
         "}";
     }
 }
